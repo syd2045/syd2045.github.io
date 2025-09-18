@@ -1,0 +1,200 @@
+/* css/style.css */
+
+/* Variabel CSS akan diisi oleh JavaScript dari data.js */
+:root {
+    --theme-color: #8B4513; /* Coklat Sadel (default) */
+    --font-title: 'Great Vibes', cursive;
+    --font-content: 'Poppins', sans-serif;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: var(--font-content);
+}
+
+body {
+    background-image: url('images/cover.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* supaya background tetap diam saat discroll */
+    overflow-x: hidden;
+    background-color: #fdfdfd;
+    padding-bottom: 80px; /* biar footer tidak ketutup navigasi bawah */
+}
+
+/* Helper Class */
+.font-title {
+    font-family: var(--font-title);
+}
+
+/* Landing Page */
+#landing {
+    height: 100vh;
+    background-image: url('images/cover.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    position: relative;
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+}
+#landing::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+#landing .container {
+    position: relative;
+    z-index: 1;
+}
+
+.btn-primary {
+    background-color: var(--theme-color);
+    border-color: var(--theme-color);
+    padding: 10px 25px;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+.btn-primary:hover {
+    background-color: #fff;
+    color: var(--theme-color);
+    border-color: var(--theme-color);
+    transform: scale(1.05);
+}
+
+/* Main Content Animation */
+.reveal {
+    position: relative;
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+    transition: opacity 1.2s ease-out, transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Countdown Timer */
+#countdown .timer-box {
+    background-color: var(--theme-color);
+    color: white;
+    border-radius: 10px;
+    padding: 15px;
+    min-width: 90px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+#countdown .timer-value {
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+#countdown .timer-label {
+    font-size: 0.9rem;
+}
+
+/* Gallery */
+#gallery-container img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#gallery-container img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Love Falling Effect */
+.love-heart {
+    position: fixed;
+    font-size: 1.5rem;
+    color: var(--theme-color);
+    animation: fall 10s linear infinite;
+    z-index: 9999;
+    opacity: 0.8;
+}
+@keyframes fall {
+    0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* Footer */
+footer {
+    background-color: #f8f9fa;
+    font-size: 0.9rem;
+    display: none;
+}
+
+}
+body.show-main footer {
+    display: block;
+    }
+
+/* Bottom Navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0;
+    z-index: 1000;
+    transform: translateY(100%); /* Sembunyi di awal */
+    transition: transform 0.5s ease-in-out;
+}
+.bottom-nav.show {
+    transform: translateY(0); /* Munculkan setelah undangan dibuka */
+}
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #888;
+    font-size: 0.75rem;
+    flex-grow: 1;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+.nav-item i {
+    font-size: 1.4rem;
+    margin-bottom: 4px;
+}
+.nav-item.active {
+    color: var(--theme-color);
+}
+.nav-item:hover {
+    color: var(--theme-color);
+}
+
+#quote {
+    background: rgba(255, 255, 255, 0.7); /* putih transparan */
+    backdrop-filter: blur(4px); /* bikin efek glassmorphism */
+    -webkit-backdrop-filter: blur(4px); /* safari support */
+    border-radius: 15px; /* opsional, biar lebih halus */
+    margin: 20px auto;
+    max-width: 900px; /* supaya tidak terlalu melebar */
+    padding: 40px 20px;
+}
+
+#mempelai {
+    padding-top: 0 !important;   /* buang padding atas section */
+    margin-top: 0 !important;    /* buang margin atas */
+}
+
+#mempelai .container {
+    padding-top: 0 !important;   /* buang padding atas container */
+    margin-top: 0 !important;
+}
+
+#mempelai p:first-child {
+    margin-top: 0 !important;    /* pastikan paragraf salam nempel */
+}
