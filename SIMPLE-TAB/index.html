@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation - Undangan Pernikahan</title>
+    <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Georgia:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+ 
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+
+    .couple-names,
+    .couple-names-main,
+    .couple-signature {
+        font-family: 'Great Vibes', cursive;
+        font-size: 2.5rem; /* bisa disesuaikan */
+        font-weight: normal;
+        color: #b91c1c; /* pink-merah elegan */
+        text-align: center;
+    }
+
+
+
+    </style>
+</head>
+<body>
+    <!-- Landing Page -->
+    <div id="landingPage" class="landing-page">
+        <div class="landing-content">
+            <div class="couple-photo-container">
+                <img id="couplePhoto" src="./images/couple.jpg" alt="Couple" class="couple-photo">
+                <div class="photo-overlay"></div>
+            </div>
+            
+            <div class="landing-text">
+                <h1 id="coupleNamesLanding" class="couple-names">
+                    Loading...
+                </h1>
+                <p id="weddingDateLanding" class="wedding-date">Loading...</p>
+                <p id="guestName" class="guest-name" style="display: none;"></p>
+            </div>
+            
+            <button onclick="openInvitation()" class="open-invitation-btn">
+                <i data-lucide="heart"></i>
+                Buka Undangan
+            </button>
+        </div>
+        
+        <div class="decorative-elements">
+            <div class="floating-heart heart-1">♥</div>
+            <div class="floating-heart heart-2">♥</div>
+            <div class="floating-heart heart-3">♥</div>
+        </div>
+    </div>
+
+    <!-- Invitation Content -->
+    <div id="invitationContent" class="invitation-content">
+        <!-- Falling Hearts Animation -->
+        <div id="fallingHeartsContainer" class="falling-hearts-container"></div>
+
+        <!-- Audio -->
+        <audio id="weddingMusic" loop>
+            <source src="wedding.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- Music Control -->
+        <div class="music-control" onclick="toggleMusic()">
+            <i id="musicIcon" data-lucide="volume-x"></i>
+        </div>
+
+        <!-- Main Content -->
+        <div id="mainContent" class="main-content">
+            <!-- Header Section -->
+            <section class="header-section">
+                <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</div>
+                <h1 class="main-title">Wedding Invitation</h1>
+                <div id="coupleNamesMain" class="couple-names-main">
+                    Loading...
+                </div>
+            </section>
+
+            <!-- Bride and Groom Section -->
+            <section class="couple-section">
+                <div class="groom-section">
+                    <div class="person-photo-container">
+                        <img id="groomPhoto" src="./images/groom.jpg" alt="Groom" class="person-photo">
+                    </div>
+                    <h3 id="groomName" class="couple-names">Loading...</h3>
+                    <p class="person-detail">Putra dari:</p>
+                    <p id="groomParents" class="parent-names">Loading...</p>
+                </div>
+
+                <div class="couple-divider">♥</div>
+                <div class="bride-section">
+                    <div class="person-photo-container">
+                        <img id="bridePhoto" src="./images/bride.jpg" alt="Bride" class="person-photo">
+                    </div>
+                    <h3 id="brideName" class="couple-names">Loading...</h3>
+                    <p class="person-detail">Putri dari:</p>
+                    <p id="brideParents" class="parent-names">Loading...</p>
+                </div>
+
+                
+            </section>
+
+            <!-- Hadith Section -->
+            <section class="hadith-section">
+                <div class="card hadith-card">
+                    <div id="hadithArabic" class="hadith-arabic">
+                        Loading...
+                    </div>
+                    <div id="hadithTranslation" class="hadith-translation">
+                        "Loading..."
+                    </div>
+                    <div id="hadithSource" class="hadith-source">
+                        - Loading...
+                    </div>
+                </div>
+            </section>
+
+            <!-- Countdown Section -->
+            <section class="countdown-section">
+                <h2 class="section-title">Countdown to Our Special Day</h2>
+                <div class="countdown-timer">
+                    <div class="time-unit">
+                        <div id="days" class="time-number">0</div>
+                        <div class="time-label">Hari</div>
+                    </div>
+                    <div class="time-unit">
+                        <div id="hours" class="time-number">0</div>
+                        <div class="time-label">Jam</div>
+                    </div>
+                    <div class="time-unit">
+                        <div id="minutes" class="time-number">0</div>
+                        <div class="time-label">Menit</div>
+                    </div>
+                    <div class="time-unit">
+                        <div id="seconds" class="time-number">0</div>
+                        <div class="time-label">Detik</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Wedding Details Section -->
+            <section class="wedding-details-section">
+                <div class="wedding-events">
+                    <div class="card event-card akad-card">
+                        <h3 class="event-title">Akad Nikah</h3>
+                        <div class="event-detail">
+                            <i data-lucide="calendar"></i>
+                            <span id="akadDate">Loading...</span>
+                        </div>
+                        <div class="event-detail">
+                            <i data-lucide="clock"></i>
+                            <span id="akadTime">Loading...</span>
+                        </div>
+                    </div>
+
+                    <div class="card event-card resepsi-card">
+                        <h3 class="event-title">Resepsi</h3>
+                        <div class="event-detail">
+                            <i data-lucide="calendar"></i>
+                            <span id="resepsiDate">Loading...</span>
+                        </div>
+                        <div class="event-detail">
+                            <i data-lucide="clock"></i>
+                            <span id="resepsiTime">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card venue-card">
+                    <h3 class="venue-title">Lokasi</h3>
+                    <div class="venue-address">
+                        <i data-lucide="map-pin"></i>
+                        <span id="venueAddress">Loading...</span>
+                    </div>
+                    <a id="mapButton" href="#" target="_blank" class="map-button">
+                        Buka Google Maps
+                    </a>
+                </div>
+            </section>
+
+<!-- Gallery Section -->
+<section id="gallerySection" class="gallery-section" style="display: none;">
+    <h2 class="section-title flex items-center gap-2">
+        <i data-lucide="camera"></i>
+        Gallery
+    </h2>
+
+    <!-- Scrollable Gallery -->
+    <div id="galleryScroll" class="flex overflow-x-auto snap-x snap-mandatory space-x-4 pb-4">
+        <!-- Foto akan dimasukkan via JS -->
+    </div>
+</section>
+
+
+            <!-- Footer -->
+            <footer class="wedding-footer">
+                <div class="footer-content">
+                    <p>Terima kasih atas doa dan restunya</p>
+                    <div id="coupleSignature" class="couple-signature">
+                        Loading...
+                    </div>
+                </div>
+            </footer>
+        </div>
+       
+
+    </div>
+
+    <script src="./data.js"></script>
+    <script src="./script.js"></script>
+    <script>
+
+    </script>
+<!-- Bottom Navigation -->
+<nav id="bottomNav" class="hidden fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-sm border-t border-gray-200 shadow-lg flex justify-around py-2 z-50">
+  <button data-target="header-section" class="tab-btn relative flex flex-col items-center text-gray-500 px-3 py-1" aria-label="Home">
+    <i data-lucide="home"></i>
+    <span class="text-xs">Home</span>
+    <span class="active-dot hidden absolute -bottom-1 w-1.5 h-1.5 rounded-full bg-pink-500"></span>
+  </button>
+
+  <button data-target="couple-section" class="tab-btn relative flex flex-col items-center text-gray-500 px-3 py-1" aria-label="Couple">
+    <i data-lucide="heart"></i>
+    <span class="text-xs">Couple</span>
+    <span class="active-dot hidden absolute -bottom-1 w-1.5 h-1.5 rounded-full bg-pink-500"></span>
+  </button>
+
+  <button data-target="countdown-section" class="tab-btn relative flex flex-col items-center text-gray-500 px-3 py-1" aria-label="Countdown">
+    <i data-lucide="calendar"></i>
+    <span class="text-xs">Countdown</span>
+    <span class="active-dot hidden absolute -bottom-1 w-1.5 h-1.5 rounded-full bg-pink-500"></span>
+  </button>
+
+  <button data-target="wedding-details-section" class="tab-btn relative flex flex-col items-center text-gray-500 px-3 py-1" aria-label="Acara">
+    <i data-lucide="map-pin"></i>
+    <span class="text-xs">Acara</span>
+    <span class="active-dot hidden absolute -bottom-1 w-1.5 h-1.5 rounded-full bg-pink-500"></span>
+  </button>
+
+  <button data-target="gallery-section" class="tab-btn relative flex flex-col items-center text-gray-500 px-3 py-1" aria-label="Gallery">
+    <i data-lucide="camera"></i>
+    <span class="text-xs">Gallery</span>
+    <span class="active-dot hidden absolute -bottom-1 w-1.5 h-1.5 rounded-full bg-pink-500"></span>
+  </button>
+</nav>
+
+
+
+</body>
+</html>
