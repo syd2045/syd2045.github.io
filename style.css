@@ -119,8 +119,10 @@ body {
 
 .card img {
   width: 100%;
-  height: auto; /* biar proporsi asli terjaga */
+  max-width: 180px; /* Mengecilkan gambar */
+  height: auto; /* Menjaga proporsi */
   display: block;
+  margin: 0 auto; /* Memastikan gambar berada di tengah */
 }
 
 .card h3 {
