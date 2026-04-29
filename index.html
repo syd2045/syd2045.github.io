@@ -1,140 +1,202 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Redirecting... | Toko Undangan</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          animation: {
-            'vibe': 'vibe 2s infinite',
-            'shimmer': 'shimmer 2.5s infinite',
-            'fade-in': 'fadeIn 0.5s ease-out forwards',
-          },
-          keyframes: {
-            vibe: { '0%': { transform: 'scale(1)', opacity: '0.8' }, '100%': { transform: 'scale(1.5)', opacity: '0' } },
-            shimmer: { '100%': { left: '125%' } },
-            fadeIn: { '0%': { opacity: '0', transform: 'translateY(10px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } }
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog Premium</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+                    colors: {
+                        blibli: {
+                            blue: '#0066cc',
+                            dark: '#0052a3',
+                            light: '#e6f0fa'
+                        }
+                    }
+                }
+            }
         }
-      }
-    }
-  </script>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-    body { font-family: 'Poppins', sans-serif; background-color: #030712; color: white; }
-    .grid-bg {
-      background-image: linear-gradient(0deg, transparent 24%, rgba(59, 130, 246, 0.05) 25%, rgba(59, 130, 246, 0.05) 26%, transparent 27%, transparent 74%, rgba(139, 92, 246, 0.05) 75%, rgba(139, 92, 246, 0.05) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(59, 130, 246, 0.05) 25%, rgba(59, 130, 246, 0.05) 26%, transparent 27%, transparent 74%, rgba(139, 92, 246, 0.05) 75%, rgba(139, 92, 246, 0.05) 76%, transparent 77%, transparent);
-      background-size: 50px 50px; position: fixed; inset: 0; z-index: -1; animation: grid-move 20s linear infinite;
-    }
-    @keyframes grid-move { 0% { background-position: 0 0; } 100% { background-position: 50px 50px; } }
-    .glass-dark { background: rgba(17, 24, 39, 0.8); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); }
-  </style>
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        * { -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Inter', sans-serif; background: #f5f5f5; }
+        .product-card { background: #fff; border-radius: 12px; overflow: hidden; transition: all 0.2s ease; }
+        .product-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .thumb-wrap { position: relative; width: 120px; min-width: 120px; height: 120px; background: #f8f8f8; border-radius: 8px; overflow: hidden; flex-shrink: 0; }
+        .thumb-wrap img { width: 100%; height: 100%; object-fit: cover; }
+        .fade-in { animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+
+        @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } /* Geser setengah panjang kontainer agar loop mulus */
+}
+
+.animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 16s linear infinite; /* Atur durasi (35s) untuk kecepatan jalan */
+}
+
+/* Teks berhenti saat di-hover agar user bisa membaca dengan jelas */
+.animate-marquee:hover {
+    animation-play-state: paused;
+}
+
+    </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4 overflow-hidden">
+<body class="antialiased min-h-screen flex flex-col">
 
-  <div class="grid-bg"></div>
-
-  <div class="glass-dark rounded-[2rem] p-8 md:p-10 max-w-md w-full text-center relative shadow-2xl">
-    
-    <div class="mb-6 flex justify-center relative">
-      <div class="absolute inset-0 flex items-center justify-center">
-        <div class="w-16 h-16 rounded-full bg-blue-500/20 animate-vibe"></div>
-      </div>
-      <div class="relative w-20 h-20 bg-gray-900 rounded-2xl flex items-center justify-center border border-blue-500/50 rotate-3 shadow-lg shadow-blue-500/20">
-        <svg class="w-10 h-10 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-        </svg>
-      </div>
+<header class="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 text-center py-3">
+         <a href="#" class="inline-flex flex-col items-center gap-0">
+            <div class="flex items-center gap-2">
+                <div class="w-7 h-7 bg-blibli-blue rounded flex items-center justify-center text-white font-bold text-xs">T</div>
+                <span class="font-bold text-base tracking-tight">Toko<span class="text-blibli-blue">Undangan</span></span>
+            </div>
+            <p class="text-[10px] text-gray-400 font-medium uppercase tracking-widest mt-1">Solusi Undangan Digital Elegant & Modern</p>
+        </a>
     </div>
 
-    <div class="mb-6">
-      <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Menyiapkan Undangan...</h1>
-      <div class="flex items-center justify-center gap-2 mt-2">
-        <div class="h-1 w-12 bg-blue-500 rounded-full"></div>
-        <span id="timer-count" class="text-sm font-mono text-gray-400">Loading 10s</span>
-        <div class="h-1 w-12 bg-purple-500 rounded-full"></div>
-      </div>
+    <div class="bg-blibli-light border-y border-blue-100 overflow-hidden py-2">
+        <div class="bg-gray-50 border-y border-gray-200 overflow-hidden py-2">
+    <div class="flex whitespace-nowrap animate-marquee">
+        <span class="text-[10px] font-extrabold text-blue-600 mx-6 flex items-center bg-blue-50 px-2 py-0.5 rounded-full">
+            <i class="fa-solid fa-circle-check mr-1.5"></i> UNLIMITED NAMA TAMU
+        </span>
+        <span class="text-[10px] font-extrabold text-green-600 mx-6 flex items-center bg-green-50 px-2 py-0.5 rounded-full">
+            <i class="fa-solid fa-circle-check mr-1.5"></i> UNLIMITED FOTO GALLERY
+        </span>
+        <span class="text-[10px] font-extrabold text-purple-600 mx-6 flex items-center bg-purple-50 px-2 py-0.5 rounded-full">
+            <i class="fa-solid fa-circle-check mr-1.5"></i> BEBAS DISABLE ENABLE FITUR
+        </span>
+        <span class="text-[10px] font-extrabold text-orange-600 mx-6 flex items-center bg-orange-50 px-2 py-0.5 rounded-full">
+            <i class="fa-solid fa-circle-check mr-1.5"></i> EXPIRED 1 TAHUN BISA LEBIH
+        </span>
+        <span class="text-[10px] font-extrabold text-red-600 mx-6 flex items-center bg-red-50 px-2 py-0.5 rounded-full">
+            <i class="fa-solid fa-circle-check mr-1.5"></i> BEBAS REVISI
+        </span>
+        <span class="text-[10px] font-extrabold text-indigo-600 mx-6 flex items-center bg-indigo-50 px-2 py-0.5 rounded-full">
+            <i class="fa-solid fa-circle-check mr-1.5"></i> MAX 6 JAM LANGSUNG JADI
+        </span>
+        <span class="text-[10px] font-extrabold text-pink-600 mx-6 flex items-center bg-pink-50 px-2 py-0.5 rounded-full">
+            <i class="fa-solid fa-circle-check mr-1.5"></i> BEBAS REQUEST MUSIK
+        </span>
+        <span class="text-[10px] font-extrabold text-teal-600 mx-6 flex items-center bg-teal-50 px-2 py-0.5 rounded-full">
+            <i class="fa-solid fa-circle-check mr-1.5"></i> GENERATE TAMU OTOMATIS
+        </span>
+
+        <span class="text-[10px] font-extrabold text-blue-600 mx-6 flex items-center bg-blue-50 px-2 py-0.5 rounded-full">
+            <i class="fa-solid fa-circle-check mr-1.5"></i> UNLIMITED NAMA TAMU
+        </span>
+        <span class="text-[10px] font-extrabold text-green-600 mx-6 flex items-center bg-green-50 px-2 py-0.5 rounded-full">
+            <i class="fa-solid fa-circle-check mr-1.5"></i> UNLIMITED FOTO GALLERY
+        </span>
+    </div>
+</div>
+    </div>
+</header>
+
+    <div class="bg-blibli-blue px-4 py-2.5">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex items-center gap-2.5 bg-white rounded-lg px-3.5 py-2">
+                <i class="fa-solid fa-magnifying-glass text-gray-400 text-sm"></i>
+                <input type="text" id="searchInput" placeholder="Cari desain undangan..." class="w-full outline-none text-sm">
+            </div>
+        </div>
     </div>
 
-    <div class="mb-8 p-4 rounded-xl bg-white/5 border border-white/10 text-left min-h-[100px] flex flex-col justify-center transition-all">
-      <div class="flex items-center gap-2 mb-2">
-        <span class="text-xs font-bold uppercase tracking-widest text-blue-400">💡 Info Singkat</span>
-        <div class="h-[1px] flex-grow bg-white/10"></div>
-      </div>
-      <p id="info-text" class="text-sm text-gray-300 leading-relaxed animate-fade-in">
-        Tahukah kamu? Undangan digital jauh lebih hemat biaya dan ramah lingkungan loh!
-      </p>
+    <main class="flex-1 max-w-2xl mx-auto px-4 py-4 w-full">
+        <div id="resultsCount" class="text-xs text-gray-500 mb-3 px-1">Memuat produk...</div>
+        <div id="catalog-grid" class="space-y-3"></div>
+        <div id="emptyState" class="hidden py-16 text-center text-sm text-gray-500">Produk tidak ditemukan</div>
+    </main>
+
+    <div id="orderModal" class="fixed inset-0 z-[100] hidden bg-black/50 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl flex flex-col max-h-[90vh] fade-in">
+            <div class="p-4 border-b flex justify-between items-center bg-white sticky top-0 z-10">
+                <div>
+                    <h3 class="font-bold text-gray-800 text-sm">Form Order Lengkap</h3>
+                    <p id="modalProductTitle" class="text-[10px] text-blibli-blue font-medium"></p>
+                </div>
+                <button onclick="closeOrderModal()" class="text-gray-400 p-2"><i class="fa-solid fa-xmark text-xl"></i></button>
+            </div>
+
+            <div class="p-4 overflow-y-auto space-y-6">
+                <div class="space-y-3">
+                    <h4 class="text-[10px] font-bold text-gray-400 uppercase tracking-widest border-b pb-1">👤 Identitas Pemesan</h4>
+                    <div class="grid grid-cols-2 gap-3">
+                        <input type="text" id="order_nama" placeholder="Nama Anda" class="border rounded-lg p-2.5 text-sm outline-none focus:border-blibli-blue">
+                        <input type="text" id="order_wa" placeholder="No. WhatsApp" class="border rounded-lg p-2.5 text-sm outline-none focus:border-blibli-blue">
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <h4 class="text-[10px] font-bold text-gray-400 uppercase tracking-widest border-b pb-1">👰 Pengantin Wanita</h4>
+                    <input type="text" id="w_nama" placeholder="Nama Lengkap Wanita" class="w-full border rounded-lg p-2.5 text-sm outline-none mb-2">
+                    <input type="text" id="w_panggilan" placeholder="Nama Panggilan Wanita" class="w-full border rounded-lg p-2.5 text-sm outline-none mb-2">
+                    <input type="text" id="w_ortu" placeholder="Putri dari (Bp. X & Ibu Y)" class="w-full border rounded-lg p-2.5 text-sm outline-none">
+                </div>
+
+                <div class="space-y-3">
+                    <h4 class="text-[10px] font-bold text-gray-400 uppercase tracking-widest border-b pb-1">🤵 Pengantin Pria</h4>
+                    <input type="text" id="p_nama" placeholder="Nama Lengkap Pria" class="w-full border rounded-lg p-2.5 text-sm outline-none mb-2">
+                    <input type="text" id="p_panggilan" placeholder="Nama Panggilan Pria" class="w-full border rounded-lg p-2.5 text-sm outline-none mb-2">
+                    <input type="text" id="p_ortu" placeholder="Putra dari (Bp. Z & Ibu W)" class="w-full border rounded-lg p-2.5 text-sm outline-none">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-2 bg-gray-50 p-3 rounded-lg">
+                        <h4 class="text-[10px] font-bold text-gray-500 uppercase">💍 Akad Nikah</h4>
+                        <input type="text" id="akad_tgl" placeholder="Tanggal Akad" class="w-full border rounded p-2 text-xs">
+                        <input type="text" id="akad_jam" placeholder="Jam Akad" class="w-full border rounded p-2 text-xs">
+                        <input type="text" id="akad_lok" placeholder="Lokasi Akad" class="w-full border rounded p-2 text-xs">
+                    </div>
+                    <div class="space-y-2 bg-gray-50 p-3 rounded-lg">
+                        <h4 class="text-[10px] font-bold text-gray-500 uppercase">🎉 Resepsi</h4>
+                        <input type="text" id="resep_tgl" placeholder="Tanggal Resepsi" class="w-full border rounded p-2 text-xs">
+                        <input type="text" id="resep_jam" placeholder="Jam Resepsi" class="w-full border rounded p-2 text-xs">
+                        <input type="text" id="resep_lok" placeholder="Lokasi Resepsi" class="w-full border rounded p-2 text-xs">
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <h4 class="text-[10px] font-bold text-gray-400 uppercase tracking-widest border-b pb-1">📌 Fitur & Musik</h4>
+                    <div class="grid grid-cols-2 gap-2">
+                        <label class="flex items-center gap-2 p-2 border rounded-lg text-xs cursor-pointer"><input type="checkbox" id="f_story" checked> Kisah Cinta</label>
+                        <label class="flex items-center gap-2 p-2 border rounded-lg text-xs cursor-pointer"><input type="checkbox" id="f_gift" checked> Hadiah/Rekening</label>
+                        <label class="flex items-center gap-2 p-2 border rounded-lg text-xs cursor-pointer"><input type="checkbox" id="f_galeri" checked> Galeri Foto</label>
+                        <label class="flex items-center gap-2 p-2 border rounded-lg text-xs cursor-pointer"><input type="checkbox" id="f_foto" checked> Foto Pengantin</label>
+                    </div>
+                    <input type="text" id="back_music" placeholder="Judul Lagu Backsound (optional)" class="w-full border rounded-lg p-2.5 text-sm outline-none">
+                </div>
+            </div>
+
+            <div class="p-4 border-t bg-gray-50">
+                <button onclick="sendOrderWA()" class="w-full bg-green-500 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 hover:bg-green-600 transition-all">
+                    <i class="fa-brands fa-whatsapp text-xl"></i> Kirim Pesanan Sekarang
+                </button>
+            </div>
+        </div>
     </div>
 
-    <div class="w-full bg-gray-800 h-1.5 rounded-full mb-8 overflow-hidden">
-        <div id="progress-bar" class="h-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-1000 ease-linear" style="width: 100%"></div>
+    <footer class="bg-white border-t border-gray-200 py-6 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+        <p class="text-xs text-gray-500 mb-1">&copy; 2026 WebWedding. All rights reserved.</p>
+        <p class="text-[10px] text-gray-400 italic">Supported by <span class="font-semibold text-blibli-blue">tokoundangan</span></p>
     </div>
+</footer>
 
-    <button id="redirect-btn" class="relative w-full overflow-hidden py-4 font-bold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl shadow-lg active:scale-95 transition-transform group">
-      <div class="absolute top-0 block w-1/2 h-full -left-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 animate-shimmer"></div>
-      <span class="relative">Akses Sekarang</span>
-    </button>
-
-  </div>
-
-  <script>
-    const TARGET_URL = "https://tokoundangan.pages.dev";
-    const COUNTDOWN_SECONDS = 9;
-    let timeLeft = COUNTDOWN_SECONDS;
-
-    const facts = [
-      "Undangan digital bisa dikirim ke ribuan tamu hanya dengan satu klik.",
-      "Kamu bisa update revisi lokasi atau waktu kapan saja tanpa cetak ulang.",
-      "Fitur RSVP membantu kamu mendata jumlah tamu yang akan hadir secara otomatis.",
-      "Undangan digital Toko Undangan mendukung integrasi Google Maps dan Kalender.",
-      "Kamu bisa menambahkan musik romantis favoritmu di dalam undangan digital.",
-      "Gak perlu amplop fisik! Kamu bisa sertakan fitur 'Kado Digital' di dalamnya."
-    ];
-
-    const infoTextEl = document.getElementById('info-text');
-    const timerCountEl = document.getElementById('timer-count');
-    const progressBarEl = document.getElementById('progress-bar');
-    const redirectBtn = document.getElementById('redirect-btn');
-
-    // Change info text every 3 seconds
-    let factIndex = 0;
-    const factInterval = setInterval(() => {
-      factIndex = (factIndex + 1) % facts.length;
-      infoTextEl.style.opacity = 0;
-      setTimeout(() => {
-        infoTextEl.textContent = facts[factIndex];
-        infoTextEl.style.opacity = 1;
-      }, 300);
-    }, 3500);
-
-    function redirectToSite() {
-      clearInterval(factInterval);
-      redirectBtn.disabled = true;
-      redirectBtn.textContent = "Membuka Portal...";
-      window.location.href = TARGET_URL;
-    }
-
-    const timer = setInterval(() => {
-      timeLeft--;
-      timerCountEl.textContent = `Loading ${timeLeft}s`;
-      
-      const percentage = (timeLeft / COUNTDOWN_SECONDS) * 100;
-      progressBarEl.style.width = `${percentage}%`;
-
-      if (timeLeft <= 0) {
-        clearInterval(timer);
-        redirectToSite();
-      }
-    }, 1000);
-
-    redirectBtn.addEventListener('click', () => {
-      clearInterval(timer);
-      redirectToSite();
-    });
-  </script>
+    <script src="https://tokoundangan.pages.dev/data.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
